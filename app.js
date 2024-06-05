@@ -17,6 +17,8 @@ xhr.addEventListener(`load`, ()=>{
     console.log(xhr.responseText)
     console.dir(xhr.responseText)
     console.log(typeof(xhr.responseText))
+
+    
   }
 
   console.log(xhr.status)
