@@ -2,9 +2,9 @@ const XMLHttpRequest = require('xhr2');
 const http = require(`http`)
 const fs = require(`fs`)
 let xhr = new XMLHttpRequest()
-console.dir(xhr)
+// console.dir(xhr)
 const https = require('https')
-console.log(https)
+// console.log(https)
 
 let apiKey = `eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDA1Mjg1NjQifQ.OVaDZZp4wwS1EpDMDlNUvAUgGSfXNbTXYUbMiqd-NGbaj5MeVzJaSVBwdr68MAU-Fg1_muH13MmMer6qgE8JL4NLciG_4hXg0gXOprZ-dc9nxMQ9zdkzgetRVKz1Pw2AUFgDP342Wolms5GdH9i97C-gcYm9EdnJQKj5FNcm0iycT1qxuJH8yPhD5Uew4wgeUEkFo1PSjbsX4f29Sy2xO2cj9lnPQI4ArPDyCL4cP41yxXR3rJ2Kx0B-egydyQfiCaCTuliqunx2JDAh9kJMZ_GmehkzBJ6eMAcEt9hSN6QhYrbql6c8Nne1tCpmFgph09oguOGzUAQu-pQKA5-DIQ`
 
@@ -19,8 +19,20 @@ xhr.addEventListener(`load`, ()=>{
     console.log(xhr.responseText)
     console.dir(xhr.responseText)
     console.log(typeof(xhr.responseText))
-    const fs = require(`fs`)
-    fs.writeFile(`testdata.json`)
+    console.log(typeof(xhr.response)) // ? 직렬화 된 값이 들어옴 === json 데이터 란 뜻.
+    console.log(xhr.response)
+    console.dir(xhr.response)
+
+    //todo 파일 이름을 더 동적으로 해야 함.
+    //todo 크롤링 할거면 규칙이 필요함
+    //todo 파일 이름을 작성하기 위한 어떠한 규칙을 만들어야 함. 해당 규칙은 API 서버에서 보내주는 것을 활용할 수 있나?
+
+    let container = JSON.parse(xhr.responseText)
+    fs.writeFile(`testdata.json`,JSON.stringify(container,null,2),(err)=>{
+      if(err){
+        throw new Error('invalid data')
+      }
+    })
 
 
   }
