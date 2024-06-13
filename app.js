@@ -27,8 +27,12 @@ xhr.addEventListener(`load`, ()=>{
     //todo 크롤링 할거면 규칙이 필요함
     //todo 파일 이름을 작성하기 위한 어떠한 규칙을 만들어야 함. 해당 규칙은 API 서버에서 보내주는 것을 활용할 수 있나?
 
+
+    //todo 전달받은 데이터를 데이터베이스 서버로 보내야 함.
+        
+
     let container = JSON.parse(xhr.responseText)
-    fs.writeFile(`testdata.json`,JSON.stringify(container,null,2),(err)=>{
+    fs.writeFile(`testdata.json`,JSON.stringify(container,null,2),(err)=>{ // ! conflict!!!!!! 이 행동은 API 서버에 요청을 보내는 애가 하면 안됨
       if(err){
         throw new Error('invalid data')
       }
@@ -41,6 +45,6 @@ xhr.addEventListener(`load`, ()=>{
 })
 
 
-// let server = http.createServer((req,res)=>{
+let server = http.createServer((req,res)=>{
 
-// })
+})
